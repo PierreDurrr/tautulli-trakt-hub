@@ -1,0 +1,9 @@
+services:
+  tautulli-trakt-hub:
+    build: .
+    container_name: tautulli-trakt-hub
+    ports:
+      - "8787:8787"
+    volumes:
+      - ./config:/config
+    restart: unless-stopped
