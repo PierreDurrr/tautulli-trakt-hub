@@ -1,21 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Users</h2>
+<form method="post" action="/users/sync">
+    <button type="submit">Import Plex users</button>
+</form>
+
+<h2>Plex Users</h2>
 
 <table>
     <tr>
-        <th>Plex User</th>
+        <th>User</th>
         <th>Enabled</th>
+        <th>Trakt</th>
     </tr>
     {% for user in users %}
     <tr>
         <td>{{ user.plex_username }}</td>
         <td>{{ "Yes" if user.enabled else "No" }}</td>
-    </tr>
-    {% else %}
-    <tr>
-        <td colspan="2">No users found</td>
+        <td>
+            {% if user.id %}
+                ❌ Not linked
+            {% endif %}
+        </td>
     </tr>
     {% endfor %}
 </table>
